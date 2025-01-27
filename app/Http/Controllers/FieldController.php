@@ -34,7 +34,7 @@ class FieldController extends Controller
                 $query = Field::with(['lapangan', 'discount'])->select('fields.*');
             // }
             if (Gate::allows('staff')) {
-                $query->where('fields.user_id', auth() ->user()->id);
+                $query->where('fields.user_id', auth()->user()->id);
             }
 
             if ($request->futsal) {

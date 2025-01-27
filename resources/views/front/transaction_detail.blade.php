@@ -25,58 +25,58 @@
                         @endphp
 
                         <div class="flex flex-col justify-start items-start dark:bg-gray-800 bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
-    <h2 class="text-2xl md:text-3xl dark:text-white font-bold leading-6 xl:leading-5 text-gray-800">
-        Detail Pesanan
-    </h2>
+                            <h2 class="text-2xl md:text-3xl dark:text-white font-bold leading-6 xl:leading-5 text-gray-800">
+                                Detail Pesanan
+                            </h2>
 
-    @foreach ($groupedItems as $lapanganId => $items)
-        @php
-            $lapangan = $items->first()->lapangan;
-            $subtotal = $items->sum(function($item) {
-                return $item->field->discounted_price ?? $item->jadwal->price;
-            });
-        @endphp
+                            @foreach ($groupedItems as $lapanganId => $items)
+                                @php
+                                    $lapangan = $items->first()->lapangan;
+                                    $subtotal = $items->sum(function($item) {
+                                        return $item->field->discounted_price ?? $item->jadwal->price;
+                                    });
+                                @endphp
 
-        <div class="mt-4 md:mt-6 flex flex-col w-full bg-white dark:bg-gray-700 rounded-lg shadow-md p-4">
-            <h3 class="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">
-                {{ $lapangan->name }}
-            </h3>
+                                <div class="mt-4 md:mt-6 flex flex-col w-full bg-white dark:bg-gray-700 rounded-lg shadow-md p-4">
+                                    <h3 class="text-xl dark:text-white xl:text-2xl font-semibold leading-6 text-gray-800">
+                                        {{ $lapangan->name }}
+                                    </h3>
 
-            <div class="overflow-x-auto mt-4">
-                <table class="w-full table-auto">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Lapangan</th>
-                            <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Tanggal</th>
-                            <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Waktu</th>
-                            <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Harga</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($items as $item)
-                            <tr>
-                                <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">{{ $item->field->name }}</td>
-                                <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">{{ $item->jadwal->date }}</td>
-                                <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">{{ $item->jadwal->start_time }} - {{ $item->jadwal->end_time }}</td>
-                                <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">Rp{{ number_format($item->field->discounted_price ?? $item->jadwal->price) }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                                    <div class="overflow-x-auto mt-4">
+                                        <table class="w-full table-auto">
+                                            <thead>
+                                                <tr>
+                                                    <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Lapangan</th>
+                                                    <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Tanggal</th>
+                                                    <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Waktu</th>
+                                                    <th class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 bg-gray-200">Harga</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($items as $item)
+                                                    <tr>
+                                                        <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">{{ $item->field->name }}</td>
+                                                        <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">{{ $item->jadwal->date }}</td>
+                                                        <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">{{ $item->jadwal->start_time }} - {{ $item->jadwal->end_time }}</td>
+                                                        <td class="px-4 py-2 text-lg dark:text-white leading-none text-gray-800 border-t border-gray-200">Rp{{ number_format($item->field->discounted_price ?? $item->jadwal->price) }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-            <div class="mt-4 flex justify-between items-center w-full">
-                <p class="text-base dark:text-white font-semibold leading-4 text-gray-800">
-                    Subtotal untuk {{ $lapangan->name }}
-                </p>
+                                    <div class="mt-4 flex justify-between items-center w-full">
+                                        <p class="text-base dark:text-white font-semibold leading-4 text-gray-800">
+                                            Subtotal untuk {{ $lapangan->name }}
+                                        </p>
 
-                <p class="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600">
-                    Rp{{ number_format($subtotal) }}
-                </p>
-            </div>
-        </div>
-    @endforeach
-</div>
+                                        <p class="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600">
+                                            Rp{{ number_format($subtotal) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                         <div class="flex justify-center  md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                             <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
                                 <h3 class="text-xl dark:text-white font-semibold leading-5 text-gray-800">Summary</h3>

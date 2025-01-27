@@ -46,34 +46,34 @@
 @section('script')
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script>
-$(document).ready(function() {
-    var table = $('#fields-table').DataTable({
-        order: [[6,'desc']],
-        ordering: true,
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: "{{ route('field.index') }}",
-            data: function (d) {
-                d.futsal = $('#futsal_filter').val();
-            }
-        },
-        columns: [
-            {data: 'image', name: 'image', orderable: false, searchable: false},
-            {data: 'lapangan.name', name: 'lapangan.name'},
-            {data: 'name', name: 'name'},
-            {data: 'base_price', name: 'base_price'},
-            {data: 'discounted_price', name: 'discounted_price'},
-            {data: 'description', name: 'description'},
-            {data: 'created_at', name: 'created_at'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-        ], // Mengurutkan berdasarkan kolom 'lapangan.name' secara default
-    });
+    $(document).ready(function() {
+        var table = $('#fields-table').DataTable({
+            order: [[6,'desc']],
+            ordering: true,
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('admin.tryout.index') }}",
+                data: function (d) {
+                    d.futsal = $('#futsal_filter').val();
+                }
+            },
+            columns: [
+                {data: 'image', name: 'image', orderable: false, searchable: false},
+                {data: 'lapangan.name', name: 'lapangan.name'},
+                {data: 'name', name: 'name'},
+                {data: 'base_price', name: 'base_price'},
+                {data: 'discounted_price', name: 'discounted_price'},
+                {data: 'description', name: 'description'},
+                {data: 'created_at', name: 'created_at'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+            ], // Mengurutkan berdasarkan kolom 'lapangan.name' secara default
+        });
 
-    $('#futsal_filter').change(function(){
-        table.draw();
+        $('#futsal_filter').change(function(){
+            table.draw();
+        });
     });
-});
 </script>
 <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
